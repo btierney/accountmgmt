@@ -1,0 +1,134 @@
+<div style="margin: 10px; width:990px">
+	<div class="navbar">
+		<a href="#!/home"><img src="imgs/header_logo_500.png" style="height:100px"/></a>
+		<!-- <div style="margin:5px;float: right !important">
+			<img ng-class="selectedCard.cardType"/>
+		</div> -->
+	</div>
+	<div  style="float: left; ;">
+		<ul class="menu">
+			<li><a href="#!/home">Home</a></li>
+			<li><a href="#!/activity">Acounts</a></li>
+			<li>Banking</li>
+			<li>Lending</li>
+			<li>Settings</li>
+		</ul>
+	</div>
+	<div>
+		<div class="heroimage">
+			<img src="imgs/hero_image.jpg"/>
+		</div>
+		<div id="FOO" style="height:60px;border: 1px solid #fff">
+			<span style="font-size: 30px">Recent Account Activity</span>
+			<div style="float:right;margin-top:10px;">
+				<button type="button" class="btn btn-primary" ng-model="singleModel" btn-checkbox-false="0" ng-click="addAccount()">Add Account</button>
+				<button type="button" class="btn btn-warning" ng-model="singleModel" btn-checkbox-false="0" ng-click="editAccount()">Edit Account</button>
+				<button type="button" class="btn btn-danger" ng-model="singleModel" btn-checkbox-false="0" ng-click="deleteAccount ()">Delete Account</button>
+            </div>
+
+		</div>
+		<div uib-collapse="isCollapsed">
+			<div class="well well-lg">
+				<div width="600px">
+					<!-- SETTINGS FORM -->
+					<h3>Modify the account:</h3>
+					<form class="form-horizontal" ng-submit="submitSettings()" role="form">
+						<div class="form-group">
+							<label for="Name" class="col-sm-3 control-label">Account Name</label>
+							<div class="col-sm-6">
+								<input type="text" id="Name" class="form-control" ng-model="account.Name" />
+							</div>
+							<div class="col-sm-3"></div>
+				
+						</div>
+						<div class="form-group">
+							<label for="TickerSymbol" class="col-sm-3 control-label">Ticker Symbol</label>
+							<div class="col-sm-6">
+								<input type="text" id="TickerSymbol" class="form-control" ng-model="account.TickerSymbol" />
+							</div>
+							<div class="col-sm-3"></div>
+						</div>
+						
+						<div class="form-group">
+								<label for="AccountType" class="col-sm-3 control-label">Account Type</label>
+								<div class="col-sm-6">
+									<select style="font-size: 35px" ng-model="data.selectedType" ng-change="typeChanged(data.selectedType)">
+										<option value="CHANNEL_PARTNER___RESELLER">Reseller</option>
+										<option value="CUSTOMER___CHANNEL">Channel</option>
+										<option value="CUSTOMER___DIRECT">Direct</option>
+										<option value="INSTALLATION_PARTNER">Installation</option>
+										<option value="OTHER">Other</option>
+										<option value="PROSPECT">Prospect</option>
+										<option value="TECHNOLOGY_PARTNER">Technology</option>
+									</select>
+								</div>
+							</div>
+
+						<div class="form-group">
+							<label for="AccountSource" class="col-sm-3 control-label">Account Source</label>
+							<div class="col-sm-6">
+								<select style="font-size: 35px" ng-model="data.selectedData" ng-change="sourceChanged(data.selectedData)">
+									<option value="OTHER">Other</option>
+									<option value="PARTNER_REFERRAL">Referral</option>
+									<option value="PHONE_INQUIRY">Inquiry</option>
+									<option value="PURCHASED_LIST">List</option>
+									<option value="WEB">Web</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="AnnualRevenue" class="col-sm-3 control-label">Annual Revenue</label>
+							<div class="col-sm-2">
+								<input type="number" id="AnnualRevenue" class="form-control" ng-model="account.AnnualRevenue" />
+							</div>
+							<div class="col-sm-7"></div>
+						</div>
+						
+						<div class="form-group">
+								<label for="AccountNumber" class="col-sm-3 control-label">Account Number</label>
+								<div class="col-sm-2">
+									<input type="text" id="AccountNumber" class="form-control" ng-model="account.AccountNumber" />
+								</div>
+								<div class="col-sm-7"></div>
+						</div>
+						<div class="form-group">
+								<label for="Active__c" class="col-sm-3 control-label">Active</label>
+								<div class="col-sm-2">
+									<input type="checkbox" id="Active__c" class="form-control" ng-model="account.Active__c" ng-true-value="'YES'" ng-false-value="'NO'"/>
+								</div>
+								<div class="col-sm-7"></div>
+						</div>
+						<input type="button" value="Save" ng-click="saveRecord()" class="btn btn-primary col-sm-offset-3" />
+						<input type="button" value="Cancel" ng-click="cancel()" class="btn btn-default col-sm-offset-3" />
+						 
+					</form>		
+					<!-- END SETTINGS FORM -->
+				</div>
+			</div>
+		</div>
+        <!-- BEGIN TABLE -->
+        <table width="100%">
+            <tr>
+                <!-- <th>Id</th> -->
+                <th>Name</th>
+				<th>Symbol</th>
+				<th>Revenue (B)</th></th>
+                <th>Acct Type</th>
+                <th class="thr">Active</th>
+                <th class="thr">Source</th>
+            </tr>
+            <tr ng-repeat="item in accounts" ng-click="setSelectedRow($index)" ng-class="{'selected':$index == selectedRow}">
+                <!-- <td>{{$index}}</td> -->
+                <td>{{item.Name}}</td>
+				<td>{{item.TickerSymbol}}</td>
+				<td>{{getDisplayRevenue(item)}}</td>
+                <td>{{getTypeDisplay(item)}}</td>
+                <td class="thr">{{item.Active__c}}</td>
+                <td class="thr">{{getSourceDisplay(item)}}</td>
+            </tr>
+        </table>
+        <!-- END TABLE -->
+	</div>
+
+</div>
