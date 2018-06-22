@@ -7,7 +7,6 @@ angular.module('myApp', [
   'ngAnimate',
   'myApp.home',
   'myApp.activity',
-  'myApp.settings',
   'myApp.services',
   'myApp.version'
 ]).
