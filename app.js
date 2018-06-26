@@ -7,6 +7,7 @@ angular.module('myApp', [
   'ngAnimate',
   'myApp.home',
   'myApp.activity',
+  'myApp.notifications',
   'myApp.services',
   'myApp.version'
 ]).
