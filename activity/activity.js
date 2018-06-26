@@ -190,26 +190,22 @@ angular.module('myApp.activity', ['ngRoute'])
         )            
 
     }
-}])
+}]);
 
-.controller ('alertCtrl',['$scope', 'alertSvc', function ($scope, alertSvc){
-    // Hold Alerts
-    $scope.alerts = [
-        // { type: 'alert-success', msg: 'Yay - Things ar going well' },
-        // { type: 'alert-warning', msg: 'Ruh Roh - Better be careful now.' },
-        // { type: 'alert-info', msg: 'PSST - Stuff is happening and you need to know' },
-        // { type: 'alert-danger', msg: 'Oh snap - Change a few things up and try submitting again.' }
-      ];
-    // start timer
-    $scope.$on ('SYSTEM_ALERT', function (event, data){
-        $scope.alerts.push (data);
-    })
+// .controller ('alertCtrl',['$scope', 'alertSvc', function ($scope, alertSvc){
+//     // Hold Alerts
+//     $scope.alerts = [];
+
+//     // start timer
+//     $scope.$on ('SYSTEM_ALERT', function (event, data){
+//         $scope.alerts.push (data);
+//     })
     
-    alertSvc.startAlertTimer($scope.timerValue);
+//     alertSvc.startAlertTimer($scope.timerValue);
 
       
-      $scope.closeAlert = function(index) {
-          $scope.alerts.splice(index, 1);
-      };
+//     $scope.closeAlert = function(index) {
+//         $scope.alerts.splice(index, 1);
+//     };
 
-}]);
+// }]);
